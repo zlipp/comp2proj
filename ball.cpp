@@ -9,7 +9,7 @@ Ball::Ball(){
     y = 0;
     xv = 3, yv = 5;
     SDL_Surface* loaded = IMG_Load("ball.bmp");
-    if (loaded == NULL) cout << "well shit"<<endl;
+    if (loaded == NULL) { cout << "well shit"<<endl; exit(1);}
     image = SDL_DisplayFormat(loaded);
     if (image == NULL) cout<< "double shit" << endl;
 }
@@ -18,7 +18,7 @@ void Ball::move() {
     x += xv;
     y += yv;
     if (x>500 || x<0) xv = -xv;
-    if (y>500 || y<0) yv = -yv;
+    if (y>1000 || y<0) yv = -yv;
 }
 
 void Ball::draw(SDL_Surface* screen){
