@@ -9,7 +9,8 @@ reference gpwiki.org for SDL syntax
 #include <SDL/SDL_image.h>
 #include <iostream>
 #include <SDL/SDL_ttf.h>
-#include <vector>
+#include "instructions.h"
+#include <deque>
 using namespace std;
 
 int main(int argc, char* args[]) 
@@ -31,12 +32,12 @@ int main(int argc, char* args[])
       return 1;
     }
 
-  vector<string> n;
+  deque<string> n;
   n.push_back("Zach");
   n.push_back("Kaitlin");
   n.push_back("Kevin");
 
-  vector<int> s;
+  deque<int> s;
   s.push_back(15);
   s.push_back(12);
   s.push_back(17);    
@@ -45,8 +46,25 @@ int main(int argc, char* args[])
   splashScreen ss;
   ss.setNames(&n);
   ss.setScores(&s);
-  ss.display(screen);
+  ss.display(screen); 
 
+  instructions i;
+
+  while(ss.getSelection()!=3)//while quit not selected
+    {
+      switch( ss.getSelection() )
+      {
+	    case 1: //play game
+	      cout<<"Play pressed"<<endl;
+	      n.push_front("Kyle");
+	      s.push_front(26);
+	      break;
+	  case 2: //instructions
+	    i.display(screen);
+	    break;
+	}
+      ss.display(screen);
+    }
 
   SDL_Quit();
 
